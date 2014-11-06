@@ -1,0 +1,85 @@
+0.6.0
+=====
+
+11/5/2014
+
+- Introduced Django 1.7 migrations. See readme.rst for info on how to run South migrations if you are not on Django 1.7 yet.
+- Upgraded front-end libraries to latest versions.
+- Added ability to grant selected users view permissions on selected queries via the EXPLORER_USER_QUERY_VIEWS parameter
+  - Example usage: EXPLORER_USER_QUERY_VIEWS = {1: [3,4], 2:[3]}
+  - This would grant user with PK 1 read-only access to query with PK=3 and PK=4 and user 2 access to query 3.
+- Bugfixes
+  - Navigating to an explorer URL without the trailing slash now redirects to the intended page (e.g. /logs -> /logs/)
+  - Downloading a .csv and subsequently re-executing a query via a keyboard shortcut (cmd+enter) would re-submit the form and re-download the .csv. It now correctly just refreshes the query.
+  - Django 1.7 compatibility fix
+
+0.5.1
+=====
+
+- Bugfixes
+    - Created_by_user not getting saved correctly
+    - Content-disposition .csv issue
+    - Issue with queries ending in ...like '%... clauses
+    - Change the way customer user model is referenced
+- Pseudo-folders for queries. Use "Foo - Ba1", "Foo - Bar2" for query names and the UI will build a little "Foo" pseudofolder for you in the query list.
+
+0.5.0
+=====
+
+- Query logs! Accessible via explorer/logs/. You can look at previously executed queries (so you don't, for instance, lose that playground query you were working, or have to worry about mucking up a recorded query). It's quite usable now, and could be used for versioning and reverts in the future. Itan be accessed at explorer/logs/
+- Actually captures the creator of the query via a ForeignKey relation, instead of just using a Char field.
+- Re-introduced type information in the schema helpers.
+- Proper relative URL handling after downloading a query as CSV.
+- Users with view permissions can use query parameters. There is potential for SQL injection here. I think about the permissions as being about preventing users from borking up queries, not preventing them from viewing data. You've been warned.
+- Refactored params handling for extra safety in multi-threaded environments.
+
+0.4.1
+=====
+
+2/24/2014
+
+- Renaming template blocks to prevent conflicts
+
+0.4
+===
+
+2/14/2014 - Happy Valentine's Day!
+
+- Templatized columns for easy linking
+- Additional security config options for splitting create vs. view permissions
+- Show many-to-many relation tables in schema helper
+
+0.3
+===
+
+1/25/14
+
+- Query execution time shown in query preview
+- Schema helper available as a sidebar in the query views
+- Better defaults for sql blacklist
+- Minor UI bug fixes
+
+0.2
+===
+
+1/5/14
+
+- Support for parameters
+- UI Tweaks
+- Test coverage
+
+0.1.1
+=====
+
+12/31/13
+
+Bug Fixes
+- Proper SQL blacklist checks
+- Downloading CSV from playground
+
+0.1
+===
+
+12/29/13
+
+Initial Release
